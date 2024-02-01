@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 def safe_print_list(my_list=[], x=0):
-    count = 0
-    for item in my_list[:x]:
-        print(item, end="")
-        count += 1
-    print()
-    return count
-
+    len = 0
+    try:
+        for i in my_list:
+            if len < x:
+                print("{}".format(i), end="")
+                len += 1
+        print()
+        return (len)
+    except IndexError:
+        print()
