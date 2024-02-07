@@ -1,13 +1,24 @@
 #!/usr/bin/python3
-"""a module that defines add_integer function"""
+"""Module with a function to add two integers"""
 
 
 def add_integer(a, b=98):
-    """a function that adds two integers"""
+    """Add two integers.
+
+    Args:
+        a (int or float): Number to add. Casted into an integer if float.
+        b (int or float): Other number to add. Casted into an integer if float.
+
+    Returns:
+        The sum of a and b.
+
+    Raises:
+        TypeError: if a or b is not an integer.
+    """
 
     if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
     if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
-    
+
     return int(a) + int(b)
