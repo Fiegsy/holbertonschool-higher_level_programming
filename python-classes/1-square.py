@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-"""empty module"""
+"""Module with a Square class containing attributes"""
 
 
-class Rectangle:
-    """empty class"""
-    def __init__(self, width, height):
-        self.__width = width
-        self.__height = height
+class Square:
+    """Class that keeps a square's size private"""
+    def __init__(self, size):
+        """Method to keep size as a private instance
+        Args:
+            size (int): Size of the square"""
+        self.__size = size
