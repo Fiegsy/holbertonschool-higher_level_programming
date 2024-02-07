@@ -2,50 +2,58 @@
 """empty module"""
 
 
-class Rectangle:
-    """class to calculate size of area"""
-    def __init__(self, width=0, height=0):
-        if not isinstance(width, int) or not isinstance(height, int):
-            raise TypeError("width and height must be integers")
-        if width < 0 or height < 0:
-            raise ValueError("width and height must be >= 0")
-        self.__width = width
-        self.__height = height
+class Square:
+    """class calculate size of area"""
+    def __init__(self, size=0):
+        """Initialize a square with a given size.
+
+        Args:
+            size (int, optional): Size of the square. Defaults to 0.
+
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is less than 0.
+        """
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = size
 
     def area(self):
-        """function to return area"""
-        return self.__width * self.__height
+        """Calculate the area of the square.
+
+        Returns:
+            int: The area of the square.
+        """
+        return self.__size * self.__size
 
     @property
-    def width(self):
-        """property for width"""
-        return self.__width
+    def size(self):
+        """Get the size of the square."""
+        return self.__size
 
-    @width.setter
-    def width(self, value):
-        """setter for width"""
+    @size.setter
+    def size(self, value):
+        """Set the size of the square.
+
+        Args:
+            value (int): The new size of the square.
+
+        Raises:
+            ValueError: If value is not an integer or less than 0.
+        """
         if isinstance(value, int):
-            self.__width = value
+            if value < 0:
+                raise ValueError("size must be >= 0")
+            self.__size = value
         else:
-            raise ValueError("width must be an integer")
-
-    @property
-    def height(self):
-        """property for height"""
-        return self.__height
-
-    @height.setter
-    def height(self, value):
-        """setter for height"""
-        if isinstance(value, int):
-            self.__height = value
-        else:
-            raise ValueError("height must be an integer")
+            raise ValueError("size must be an integer")
 
     def my_print(self):
-        """method to print rectangle of stars"""
-        if self.__width == 0 or self.__height == 0:
+        """Print a square of '#' characters with the size of the square."""
+        if self.__size == 0:
             print()
         else:
-            for _ in range(self.__height):
-                print('*' * self.__width)
+            for _ in range(self.__size):
+                print("#" * self.__size)
