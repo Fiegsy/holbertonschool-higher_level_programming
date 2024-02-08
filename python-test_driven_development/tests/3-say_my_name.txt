@@ -19,3 +19,20 @@ def say_my_name(first_name, last_name=None):
         print(f"My name is {first_name} {last_name}")
     else:
         print(f"My name is {first_name}")
+
+# Test cases
+try:
+    say_my_name("John", "Smith")
+    say_my_name("Walter", "White")
+    say_my_name("Bob")
+    say_my_name(12, "White")
+    say_my_name(None)
+    say_my_name(None , "poppins")
+    say_my_name("mary" , None)
+    say_my_name(1, "Poppins")
+    say_my_name("mary", 2)
+    say_my_name(["mary"], "poppins")
+    say_my_name("mary", ["poppins"])
+    say_my_name()
+except TypeError as e:
+    print(e)
