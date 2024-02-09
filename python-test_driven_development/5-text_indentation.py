@@ -1,23 +1,29 @@
 #!/usr/bin/python3
-"""a module that defines the text_identation function"""
+"""Module with a function that indents a text"""
 
 
 def text_indentation(text):
-    """a function that print the content of a text
+    """Indent a text by adding two new lines after specific separators.
 
-    returns: nothing
+    Args:
+        text (str): Text to indent
 
-    raises:
-        TypeError: if the text is not a string
+    Raises:
+        TypeError: if text is not a string.
     """
 
-    if not isinstance(text, str):
+    if type(text) is not str:
         raise TypeError("text must be a string")
-    sentence = ""
-    for i in text:
-        sentence += i
-        if i in [".", "?", ":"]:
-            print("{}\n".format(sentence.strip()))
-            sentence = ""
-    if sentence.strip() != "":
-        print("{}".format(sentence.strip()), end="")
+
+    sep = ".?:"
+    new = ""
+    mark = 0
+    for i in range(len(text)):
+        if text[i] in sep or i == len(text) - 1:
+            new += (text[mark:i + 1]).strip() + "\n\n"
+            if text[i] == " ":
+                mark = i + 2
+            else:
+                mark = i + 1
+
+    print(new.strip(), end="")

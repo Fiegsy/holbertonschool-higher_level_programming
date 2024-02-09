@@ -1,33 +1,68 @@
-# 5-text_indentation.txt
+===============================
+ How to Use 5-text_indentation.py
+===============================
 
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
->>> text_indentation(5)
+A text containing . ? :
+===============================
+
+>>> text_indentation("Bonjour. Comment allez-vous? Dites cela: Hej.")
+Bonjour.
+<BLANKLINE>
+Comment allez-vous?
+<BLANKLINE>
+Dites cela:
+<BLANKLINE>
+Hej.
+
+Text argument is not a string
+===============================
+
+>>> text_indentation(22)
 Traceback (most recent call last):
 TypeError: text must be a string
 
->>> text_indentation("text", "text")
-Traceback (most recent call last):
-TypeError: text_indentation() takes 1 positional argument but 2 were given
-
->>> text_indentation(None)
-Traceback (most recent call last):
-TypeError: text must be a string
+Text argument is an empty string
+===============================
 
 >>> text_indentation("")
 
->>> text_indentation(amkd)
-Traceback (most recent call last):
-NameError: name 'amkd' is not defined
+Text is complex multiline string
+===============================
 
->>> text_indentation(("mary","poppins"))
-Traceback (most recent call last):
-TypeError: text must be a string
+>>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
+... Non autem hoc: igitur ne illud quidem.""")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
+<BLANKLINE>
+Non autem hoc:
+<BLANKLINE>
+igitur ne illud quidem.
 
->>> text_indentation({"mary", "poppins"})
-Traceback (most recent call last):
-TypeError: text must be a string
+No text is provided to the function
+===============================
 
->>> text_indentation("text)
+>>> text_indentation()
 Traceback (most recent call last):
-SyntaxError: unterminated string literal (detected at line 1)
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+Text with spaces at the beginning of the line
+===============================
+
+>>> text_indentation("""         Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+... Quonam modo?                   Utrum igitur tibi litteram videor an totas paginas commovere? \
+... Non autem hoc: igitur ne illud quidem.""")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
+<BLANKLINE>
+Non autem hoc:
+<BLANKLINE>
+igitur ne illud quidem.
