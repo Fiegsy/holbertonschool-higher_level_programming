@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""module contains say_my_name"""
+"""module  contains say_my_name"""
 
 
 def say_my_name(first_name, last_name=""):
-    """Function to print first and last name"""
+    """Fonction print first and last name"""
 
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
