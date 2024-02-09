@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""module that print square"""
+"""a module with print_square function definition"""
 
 
 def print_square(size):
-    """a function print a square"""
+    """a function that print a square"""
+
     if not isinstance(size, int):
         raise TypeError("size must be an integer")
     if size < 0:
