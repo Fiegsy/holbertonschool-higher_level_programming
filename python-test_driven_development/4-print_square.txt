@@ -1,33 +1,47 @@
-# 4-print_square.txt
+===============================
+ How to Use 4-print_square.py
+===============================
 
 >>> print_square = __import__('4-print_square').print_square
 
->>> print_square(-1)
+Size as positive integer
+===============================
+
+>>> print_square(4)
+####
+####
+####
+####
+
+Size is equal to 0
+===============================
+
+>>> print_square(0)
+
+Size is a negative integer
+===============================
+
+>>> print_square(-2)
 Traceback (most recent call last):
 ValueError: size must be >= 0
 
->>> print_square('1')
+Size is not an integer
+===============================
+
+>>> print_square(3.5)
 Traceback (most recent call last):
 TypeError: size must be an integer
 
->>> print_square(-1.5)
+Size is not an integer and is négative
+================================
+
+>>> print_square(-3.5)
 Traceback (most recent call last):
 TypeError: size must be an integer
 
->>> print_square(None)
-Traceback (most recent call last):
-TypeError: size must be an integer
-
->>> print_square(["two"])
-Traceback (most recent call last):
-TypeError: size must be an integer
-
->>> print_square(1, 2)
-Traceback (most recent call last):
-TypeError: print_square() takes 1 positional argument but 2 were given
+Size is not provided
+================================
 
 >>> print_square()
 Traceback (most recent call last):
 TypeError: print_square() missing 1 required positional argument: 'size'
-
->>> print_square(0)
