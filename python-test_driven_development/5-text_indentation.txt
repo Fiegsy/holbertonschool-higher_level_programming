@@ -1,0 +1,66 @@
+#!/usr/bin/python3
+"""Module for text indentation."""
+
+
+def text_indentation(text):
+    """Indents the text based on punctuation."""
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+    if text == "":
+        print()
+        return
+
+    punctuations = [".", "?", ":"]
+    lines = []
+    current_line = ""
+
+    for char in text:
+        current_line += char
+        if char in punctuations:
+            lines.append(current_line.strip())
+            current_line = ""
+
+    for line in lines:
+        print(line)
+        print()
+
+
+# Test cases
+if __name__ == "__main__":
+    try:
+        text_indentation("Bonjour. Comment allez-vous? Dites cela: Hej.")
+    except Exception as e:
+        print(e)
+
+    try:
+        text_indentation(22)
+    except Exception as e:
+        print(e)
+
+    try:
+        text_indentation("")
+    except Exception as e:
+        print(e)
+
+    try:
+        text_indentation(
+            """Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+            Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
+            Non autem hoc: igitur ne illud quidem."""
+        )
+    except Exception as e:
+        print(e)
+
+    try:
+        text_indentation()
+    except Exception as e:
+        print(e)
+
+    try:
+        text_indentation(
+            """         Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+            Quonam modo?                   Utrum igitur tibi litteram videor an totas paginas commovere? \
+            Non autem hoc: igitur ne illud quidem."""
+        )
+    except Exception as e:
+        print(e)
