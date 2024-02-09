@@ -1,66 +1,33 @@
-#!/usr/bin/python3
-"""Module for text indentation."""
+# 5-text_indentation.txt
 
+>>> text_indentation = __import__('5-text_indentation').text_indentation
 
-def text_indentation(text):
-    """Indents the text based on punctuation."""
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
-    if text == "":
-        print()
-        return
+>>> text_indentation(5)
+Traceback (most recent call last):
+TypeError: text must be a string
 
-    punctuations = [".", "?", ":"]
-    lines = []
-    current_line = ""
+>>> text_indentation("text", "text")
+Traceback (most recent call last):
+TypeError: text_indentation() takes 1 positional argument but 2 were given
 
-    for char in text:
-        current_line += char
-        if char in punctuations:
-            lines.append(current_line.strip())
-            current_line = ""
+>>> text_indentation(None)
+Traceback (most recent call last):
+TypeError: text must be a string
 
-    for line in lines:
-        print(line)
-        print()
+>>> text_indentation("")
 
+>>> text_indentation(amkd)
+Traceback (most recent call last):
+NameError: name 'amkd' is not defined
 
-# Test cases
-if __name__ == "__main__":
-    try:
-        text_indentation("Bonjour. Comment allez-vous? Dites cela: Hej.")
-    except Exception as e:
-        print(e)
+>>> text_indentation(("mary","poppins"))
+Traceback (most recent call last):
+TypeError: text must be a string
 
-    try:
-        text_indentation(22)
-    except Exception as e:
-        print(e)
+>>> text_indentation({"mary", "poppins"})
+Traceback (most recent call last):
+TypeError: text must be a string
 
-    try:
-        text_indentation("")
-    except Exception as e:
-        print(e)
-
-    try:
-        text_indentation(
-            """Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-            Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
-            Non autem hoc: igitur ne illud quidem."""
-        )
-    except Exception as e:
-        print(e)
-
-    try:
-        text_indentation()
-    except Exception as e:
-        print(e)
-
-    try:
-        text_indentation(
-            """         Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-            Quonam modo?                   Utrum igitur tibi litteram videor an totas paginas commovere? \
-            Non autem hoc: igitur ne illud quidem."""
-        )
-    except Exception as e:
-        print(e)
+>>> text_indentation("text)
+Traceback (most recent call last):
+SyntaxError: unterminated string literal (detected at line 1)
