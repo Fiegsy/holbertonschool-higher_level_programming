@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""empty module"""
+
+
 class Rectangle:
-    """An empty class representing a rectangle."""
+    """class empty"""
     pass
