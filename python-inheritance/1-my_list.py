@@ -5,6 +5,6 @@
 class MyList(list):
     """a function that inherits a list"""
     def print_sorted(self):
-        new_list = self[:]
-        new_list.sort()
-        print("{}".format(new_list))
+        """Prints the sorted list"""
+        sorted_list = sorted(self)
+        print("Sorted list:", sorted_list)
