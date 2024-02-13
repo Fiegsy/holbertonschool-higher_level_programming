@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Geometry module"""
+
 from typing import Union
 
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
@@ -16,6 +17,7 @@ class Square(Rectangle):
             size (int or float): The size of the square.
         """
         super().__init__(size, size)
+        self.__size = size
 
     def area(self) -> Union[int, float]:
         """Calculates the area of the square.
@@ -23,5 +25,4 @@ class Square(Rectangle):
         Returns:
             int or float: The area of the square.
         """
-        return self.width * self.height
-    
+        return self.__size ** 2
