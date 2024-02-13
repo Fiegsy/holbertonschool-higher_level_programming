@@ -1,24 +1,26 @@
 #!/usr/bin/python3
-"""Module with the Square class"""
-
+"""Geometry module"""
 from typing import Union
 
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 Rectangle = __import__('9-rectangle').Rectangle
 
 
 class Square(Rectangle):
-    """Defines the Square class"""
+    """Represents a square."""
 
     def __init__(self, size: Union[int, float]):
-        """Constructor method to instantiate a Square object
+        """Initializes a new square.
 
         Args:
-            size (int or float): Defines the size of the square
+            size (int or float): The size of the square.
         """
-
         super().__init__(size, size)
 
-    def __str__(self):
-        """Returns the string representation of the square"""
-        return "[Square] {}/{}".format(self.width, self.height)
-    
+    def area(self) -> Union[int, float]:
+        """Calculates the area of the square.
+
+        Returns:
+            int or float: The area of the square.
+        """
+        return self.width * self.height
