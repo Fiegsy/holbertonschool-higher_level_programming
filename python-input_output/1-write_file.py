@@ -1,9 +1,14 @@
 #!/usr/bin/python3
-"""Module with a function to write to a file"""
+"""Module with a function to write content into a file"""
 
 
 def write_file(filename="", text=""):
-    """Writes text to a file"""
+    """Writes text content into a file
 
-    with open(filename, 'w', encoding="utf-8") as file:
+    Args:
+        filename (str): Name of the file to write into
+        text (str): Text content to write into the file
+    """
+
+    with open(filename, 'w') as file:
         file.write(text)
