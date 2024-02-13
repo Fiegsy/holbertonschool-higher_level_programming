@@ -16,15 +16,18 @@ class Rectangle(BaseGeometry):
         """
 
         super().__init__()  # Appel au constructeur de la classe parente (BaseGeometry)
-        self.width = width
-        self.height = height
+        self.integer_validator("width", width)
+        self.__width = width
+        self.integer_validator("height", height)
+        self.__height = height
 
     def area(self):
         """Calcule et retourne l'aire du rectangle"""
 
-        return self.width * self.height
+        return self.__width * self.__height
 
     def __str__(self):
         """Retourne la représentation sous forme de chaîne de caractères du rectangle"""
 
-        return "[Rectangle] {}/{}".format(self.width, self.height)
+        return "[Rectangle] {}/{}".format(self.__width, self.__height)
+    
