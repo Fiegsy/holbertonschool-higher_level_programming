@@ -2,13 +2,13 @@
 """Module with a function to write content to a file"""
 
 
-def write_to_file(filename="", content=""):
-    """Writes content to a file. If the file does not exist, it creates one.
+def write_to_file(file_path="", data=""):
+    """Writes data to a file.
 
     Args:
-        filename (str): The name of the file to write to.
-        content (str): The content to write to the file.
+        file_path (str): The path to the file to write to.
+        data (str): The data to write to the file.
     """
 
-    with open(filename, 'w') as file:
-        return file.write(content)
+    with open(file_path, 'w') as file:
+        return file.write(data)
