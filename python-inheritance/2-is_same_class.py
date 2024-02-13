@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-"""Function that checks if an object is an instance of a specified class"""
+"""Module with a function to check if an object is an instance of a class"""
 
 
 def is_instance_of(obj, a_class):
-    """Function to determine if obj is an instance of a_class"""
-    return True if isinstance(obj, a_class) else False
+    """Checks if an object is exactly an instance of the specified class"""
+    return type(obj) is a_class
