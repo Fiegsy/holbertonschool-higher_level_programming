@@ -24,3 +24,4 @@ class Square(Rectangle):
             int or float: The area of the square.
         """
         return self.width * self.height
+    
