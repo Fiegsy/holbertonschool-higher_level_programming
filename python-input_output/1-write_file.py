@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""Module with a function to write content to a file"""
+"""Module with a function to write a string text into a file"""
 
 
-def write_to_file(file_path="", data=""):
-    """Writes data to a file.
+def write_file(filename="", text=""):
+    """Writes a string text into a file.
 
     Args:
-        file_path (str): The path to the file to write to.
-        data (str): The data to write to the file.
+        filename (str): Name of the file to write into.
+        text (str): Text to write into the file.
     """
 
-    with open(file_path, 'w') as file:
-        return file.write(data)
+    with open(filename, 'w') as file:
+        return file.write(text)
