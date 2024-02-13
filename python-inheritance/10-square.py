@@ -1,21 +1,24 @@
 #!/usr/bin/python3
-"""Module où la classe Square est définie"""
+"""Module with the Square class"""
 
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+from typing import Union
+
 Rectangle = __import__('9-rectangle').Rectangle
 
 
 class Square(Rectangle):
-    """Classe représentant un carré"""
+    """Defines the Square class"""
 
-    def __init__(self, size):
-        """Initialise un nouveau carré"""
+    def __init__(self, size: Union[int, float]):
+        """Constructor method to instantiate a Square object
 
-        super().__init__(size, size)  # Appel au constructeur de la classe parente (Rectangle)
-        self.__size = size
+        Args:
+            size (int or float): Defines the size of the square
+        """
 
-    def area(self):
-        """Calcule et retourne l'aire du carré"""
+        super().__init__(size, size)
 
-        return self.__size ** 2
+    def __str__(self):
+        """Returns the string representation of the square"""
+        return "[Square] {}/{}".format(self.width, self.height)
     
