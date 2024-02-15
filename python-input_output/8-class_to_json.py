@@ -1,8 +1,10 @@
 #!/usr/bin/python3
-"""Module with a function to convert an object to a dictionary for JSON serialization"""
+"""Module with a function that returns the simple description for
+JSON serialization of an object"""
 
 
-def obj_to_json(obj):
-    """Returns a dictionary representation of the object suitable for JSON serialization"""
+def class_to_json(obj):
+    """Returns the dictionnary description with simple data structure
+    for the JSON serialization of 'obj'"""
 
     return obj.__dict__
