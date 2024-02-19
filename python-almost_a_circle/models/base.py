@@ -1,58 +1,57 @@
 #!/usr/bin/python3
-"""Module defining the Base class"""
-
+"""The first class"""
 import json
-from os.path import exists
+import os
 
 
 class Base:
-    """Defines the attributes and methods of the Base class"""
+    """class base"""
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """Constructor method for the Base class.
-
-        Args:
-            id (int): Positive integer to set class instance's id to.
-        """
+        """Initialize a Base instance"""
         self.id = id if id is not None else Base.__nb_objects + 1
         Base.__nb_objects += 1
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Returns the JSON string representation of 'list_dictionaries'"""
+        """Return the JSON string representation of list_dictionaries."""
         return json.dumps(list_dictionaries) if list_dictionaries else "[]"
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Writes the JSON string representation of 'list_objs' to a file"""
+        """Write the JSON string representation of list_objs to a file."""
         list_objs = list_objs or []
-        my_list = [obj.to_dictionary() for obj in list_objs]
         filename = f"{cls.__name__}.json"
-        with open(filename, "w") as f:
-            f.write(Base.to_json_string(my_list))
+        with open(filename, "w") as file:
+            dict_list = [obj.to_dictionary() for obj in list_objs]
+            json_string = cls.to_json_string(dict_list)
+            file.write(json_string)
 
     @staticmethod
     def from_json_string(json_string):
-        """Returns the list of the JSON representation 'json_string'"""
+        """Return the list of the JSON representation json_string."""
         return json.loads(json_string) if json_string else []
 
     @classmethod
     def create(cls, **dictionary):
-        """Returns an instance with attributes already set"""
-        dummy = cls(1)
+        """Create an instance with attributes already set."""
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
+        else:
+            dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
 
     @classmethod
     def load_from_file(cls):
-        """Returns a list of instances from a file containing JSON string
-        representation of a class 'cls' object"""
+        """Load instances from a JSON file."""
         filename = f"{cls.__name__}.json"
-        if not exists(filename):
+        if not os.path.exists(filename):
             return []
-        with open(filename, "r") as f:
-            json_str = f.read()
-            json_list = cls.from_json_string(json_str)
-            return [cls.create(**d) for d in json_list]
+        with open(filename, 'r', encoding="utf-8") as file:
+            json_file = file.read()
+            new_dict = cls.from_json_string(json_file)
+            instances = [cls.create(**data) for data in new_dict]
+        return instances
