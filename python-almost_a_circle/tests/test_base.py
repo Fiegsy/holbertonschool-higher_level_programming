@@ -35,27 +35,27 @@ class TestBase(unittest.TestCase):
 
     def test_save_to_file(self):
         """Test saving list of dictionaries to file"""
-        # Assuming a method to write to file is implemented
+       
         Base.save_to_file([{'id': 1}, {'id': 2}])
-        # Add assertions to check if file was created and contains correct data
+       
 
     def test_save_to_file_empty_list(self):
         """Test saving empty list to file"""
-        # Assuming a method to write to file is implemented
+       
         Base.save_to_file([])
-        # Add assertions to check if file was created and is empty
+       
 
     def test_save_to_file_none(self):
         """Test saving None to file"""
-        # Assuming a method to write to file is implemented
+       
         Base.save_to_file(None)
-        # Add assertions to check if file was created and is empty
+        
 
     def test_save_to_file_invalid_input(self):
         """Test saving invalid input to file"""
-        # Assuming a method to write to file is implemented
+        
         Base.save_to_file("invalid_input")
-        # Add assertions to check if file was created and is empty
+        
 
 if __name__ == '__main__':
     unittest.main()
