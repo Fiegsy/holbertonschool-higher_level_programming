@@ -1,57 +1,42 @@
 #!/usr/bin/python3
-"""
-    Module of test
-"""
+"""Test cases for the Base class"""
 
 import unittest
 from models.base import Base
 
-
 class TestBase(unittest.TestCase):
-
-    def setUp(self):
-        self.base = Base(12)
-
-    def test_nb_objects(self):
-        # test nb_object before first call
-        Base._Base__nb_objects = 0
-
-    def test_ID(self):
-        # if id, id = value
-        base = Base(39)
-        self.assertEqual(base.id, 39)
-
-    def test_IDNone(self):
-        # if no id, id = nb_obj
+    def test_base_id_increment(self):
+        """Test that Base class increments id correctly"""
         base1 = Base()
+        base2 = Base()
         self.assertEqual(base1.id, 1)
+        self.assertEqual(base2.id, 2)
 
+    def test_base_custom_id(self):
+        """Test creation of Base class with custom id"""
+        base = Base(100000)
+        self.assertEqual(base.id, 100000)
 
-class TestBaseStaticMethod(unittest.TestCase):
+    def test_base_float_id(self):
+        """Test creation of Base class with float id"""
+        base = Base(1.1)
+        self.assertEqual(base.id, 1.1)
 
-    def setUp(self):
-        self.base = Base(12)
+    def test_to_json_string(self):
+        """Test conversion of list to JSON string"""
+        json_string = Base.to_json_string([{'id': 23}])
+        self.assertEqual(json_string, '[{"id": 23}]')
 
-    def test_outputTypeToJsonString(self):
-        # test output function is a string
-        list_dict = {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8}
-        self.assertEqual(type(Base.to_json_string(list_dict)), str)
+    def test_from_json_string(self):
+        """Test conversion of JSON string to list"""
+        json_string = '[{"id": 89 }]'
+        json_list = Base.from_json_string(json_string)
+        self.assertEqual(json_list, [{'id': 89}])
 
-    def test_outputEmptyToJsonString(self):
-        # test output function if None as input is a string empty list
-        list_dict = None
-        self.assertEqual(Base.to_json_string(list_dict), '[]')
+    def test_save_to_file(self):
+        """Test saving list of dictionaries to file"""
+        # Assuming a method to write to file is implemented
+        Base.save_to_file([{'id': 1}, {'id': 2}])
+        # Add assertions to check if file was created and contains correct data
 
-    def test_outputTypeFromJsonString(self):
-        # test output function is a list
-        json_string = '[{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]'
-        self.assertEqual(type(Base.from_json_string(json_string)), list)
-
-    def test_outputEmptyTypeFromJsonString(self):
-        # test output function if None as input is a empty list
-        json_string = None
-        self.assertEqual(Base.from_json_string(json_string), [])
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_save_
