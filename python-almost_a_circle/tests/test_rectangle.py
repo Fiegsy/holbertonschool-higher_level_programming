@@ -1,103 +1,139 @@
 #!/usr/bin/python3
-"""
-Module for testing the Rectangle subclass.
-"""
+"""Rectanglecl test"""
+
 
 import unittest
-import os
-import io
-import sys
-from models.base import Base
 from models.rectangle import Rectangle
 
 
-class TestRectangleAttribut(unittest.TestCase):
-    """Tests for attribute types of Rectangle class."""
+class TestBase(unittest.TestCase):
+    def test_1(self):
+        Rectangle(1, 2)
 
-    def test_width_type(self):
-        """Test type of width attribute."""
-        rect1 = Rectangle(2, 8, 1, 2)
-        self.assertTrue(type(rect1.width) is int)
+    def test_2(self):
+        Rectangle(1, 2, 3)
 
-    def test_height_type(self):
-        """Test type of height attribute."""
-        rect1 = Rectangle(2, 8, 1, 2)
-        self.assertTrue(type(rect1.height) is int)
+    def test_3(self):
+        Rectangle(1, 2, 3, 4)
 
-    def test_x_type(self):
-        """Test type of x attribute."""
-        rect1 = Rectangle(2, 8, 1, 2)
-        self.assertTrue(type(rect1.x) is int)
+    def test_4(self):
+        with self.assertRaises(TypeError) as context:
+            Rectangle("1", 2)
+        self.assertTrue('width must be an integer' in str(context.exception))
 
-    def test_y_type(self):
-        """Test type of y attribute."""
-        rect1 = Rectangle(2, 8, 1, 2)
-        self.assertTrue(type(rect1.y) is int)
+    def test_5(self):
+        with self.assertRaises(TypeError) as context:
+            Rectangle(1, "2")
+        self.assertTrue('height must be an integer' in str(context.exception))
+
+    def test_6(self):
+        with self.assertRaises(TypeError) as context:
+            Rectangle(1, 2, "3")
+        self.assertTrue('x must be an integer' in str(context.exception))
+
+    def test_7(self):
+        with self.assertRaises(TypeError) as context:
+            Rectangle(1, 2, 3, "4")
+        self.assertTrue('y must be an integer' in str(context.exception))
+
+    def test_8(self):
+        Rectangle(1, 2, 3, 4, 5)
+
+    def test_9(self):
+        with self.assertRaises(ValueError) as context:
+            Rectangle(-1, 2)
+        self.assertTrue('width must be > 0' in str(context.exception))
+
+    def test_10(self):
+        with self.assertRaises(ValueError) as context:
+            Rectangle(1, -2)
+        self.assertTrue('height must be > 0' in str(context.exception))
+
+    def test_11(self):
+        with self.assertRaises(ValueError) as context:
+            Rectangle(0, 2)
+        self.assertTrue('width must be > 0' in str(context.exception))
+
+    def test_12(self):
+        with self.assertRaises(ValueError) as context:
+            Rectangle(1, 0)
+        self.assertTrue('height must be > 0' in str(context.exception))
+
+    def test_13(self):
+        with self.assertRaises(ValueError) as context:
+            Rectangle(1, 2, -3)
+        self.assertTrue('x must be >= 0' in str(context.exception))
+
+    def test_14(self):
+        with self.assertRaises(ValueError) as context:
+            Rectangle(1, 2, 3, -4)
+        self.assertTrue('y must be >= 0' in str(context.exception))
+
+    def test_15(self):
+        Rectangle.create(**{ 'width': 2, 'height': 3 })
+
+    def test_16(self):
+        Rectangle.create(**{ 'width': 2, 'height': 3, 'x': 12 })
+
+    def test_17(self):
+        Rectangle.create(**{ 'width': 2, 'height': 3, 'x': 12, 'y': 1 })
+
+    def test_18(self):
+        Rectangle.create(**{ 'width': 2, 'height': 3, 'x': 12, 'y': 1, 'id': 89 })
+
+    def test_19(self):
+        Rectangle.load_from_file()
+
+    def test_20(self):
+        Rectangle.load_from_file()
+    
+    def test_21(self):
+        r1 = Rectangle(8, 65, 2, 10, 2)
+        r2 = Rectangle(10, 2, 1, 3, 5)
+        Rectangle.save_to_file([r1, r2])
+
+    def test_22(self):
+        Rectangle.save_to_file([])
+
+    def test_23(self):
+        dt = Rectangle(1, 2, 3, 4, 5)
+        dt.save_to_file(None)
+
+    def test_24(self):
+        with self.assertRaises(AttributeError) as context:
+            Rectangle.to_dictionary(self)
+        self.assertTrue("'TestBase' object has no attribute 'width'" in str(context.exception))
+
+    def test_25(self):
+        dt = Rectangle(10, 10)
+        dt.area()
+        
+    def test_26(self):
+        dt = Rectangle(1, 1)
+        dt.display()
+
+    def test_27(self):
+        Rectangle.save_to_file(None)
+        
+    def test_28(self):
+        dt = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(dt.area(), 2)
+    
+    def test_29(self):
+        dt = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(str(dt), '[Rectangle] (5) 3/4 - 1/2')
+
+    def test_30(self):
+        dt = Rectangle(1, 2, 3, 4)
+        dt.display()
+        
+    def test_31(self):
+        dt = Rectangle(1, 2, 3)
+        dt.display()
+        
+    def test_32(self):
+        dt = Rectangle(1, 2)
+        dt.display()
 
 
-class TestRectangleAttributeRaise(unittest.TestCase):
-    """Tests for raising exceptions on attribute assignment."""
-
-    def test_width_type_error(self):
-        """Test TypeError on width not being int."""
-        with self.assertRaises(TypeError):
-            rect2 = Rectangle('2', 8, 1, 2)
-
-    def test_width_value_error_negative(self):
-        """Test ValueError on width being negative."""
-        with self.assertRaises(ValueError):
-            rect3 = Rectangle(-2, 8, 0, 0)
-
-    def test_width_value_error_zero(self):
-        """Test ValueError on width being zero."""
-        with self.assertRaises(ValueError):
-            rect3 = Rectangle(0, 8, 0, 0)
-
-    # Similar tests for other attributes omitted for brevity...
-
-
-class TestRectangleMethod(unittest.TestCase):
-    """Tests for methods of Rectangle class."""
-
-    @staticmethod
-    def capture_output(rect, method):
-        """Capture and return text printed in stdout."""
-        capture = io.StringIO()
-        sys.stdout = capture
-        if method == "print":
-            print(rect)
-        else:
-            rect.display()
-        sys.stdout = sys.__stdout__
-        return capture
-
-    # Tests for other methods omitted for brevity...
-
-class TestBaseCreate(unittest.TestCase):
-    """Tests for the create method of Base class."""
-
-    def test_create_rectangle(self):
-        """Test creating a rectangle."""
-        rect14 = Rectangle(14, 14, 14, 14, 14)
-        rect14_dict = rect14.to_dictionary()
-        rect15 = Rectangle.create(**rect14_dict)
-        self.assertEqual("[Rectangle] (14) 14/14 - 14/14", str(rect14))
-
-    # Additional tests omitted for brevity...
-
-class TestBaseMethodWithFile(unittest.TestCase):
-    """Tests for methods of Base class involving file I/O."""
-
-    @classmethod
-    def tearDown(cls):
-        """Delete files after tests."""
-        for filename in ["Rectangle.json", "Square.json", "Base.json"]:
-            try:
-                os.remove(filename)
-            except FileNotFoundError:
-                pass
-
-    # Tests for other methods omitted for brevity...
-
-if __name__ == '__main__':
-    unittest.main()
+        
