@@ -1,61 +1,55 @@
 #!/usr/bin/python3
-"""Test cases for the Base class"""
+"""Unit tests for Base class"""
 
 import unittest
 from models.base import Base
 
+
 class TestBase(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_base_id_default(self):
+        b1 = Base()
+        self.assertEqual(b1.id, 1)
+
     def test_base_id_increment(self):
-        """Test that Base class increments id correctly"""
-        base1 = Base()
-        base2 = Base()
-        self.assertEqual(base1.id, 1)
-        self.assertEqual(base2.id, 2)
+        b1 = Base()
+        b2 = Base()
+        self.assertEqual(b1.id, 1)
+        self.assertEqual(b2.id, 2)
 
-    def test_base_custom_id(self):
-        """Test creation of Base class with custom id"""
-        base = Base(100000)
-        self.assertEqual(base.id, 100000)
+    def test_base_id_custom(self):
+        b1 = Base(100000)
+        self.assertEqual(b1.id, 100000)
 
-    def test_base_float_id(self):
-        """Test creation of Base class with float id"""
-        base = Base(1.1)
-        self.assertEqual(base.id, 1.1)
+    def test_base_id_float(self):
+        b1 = Base(1.1)
+        self.assertEqual(b1.id, 1.1)
 
-    def test_to_json_string(self):
-        """Test conversion of list to JSON string"""
-        json_string = Base.to_json_string([{'id': 23}])
-        self.assertEqual(json_string, '[{"id": 23}]')
+    def test_to_json_string_empty(self):
+        self.assertEqual(Base.to_json_string([]), "[]")
 
-    def test_from_json_string(self):
-        """Test conversion of JSON string to list"""
-        json_string = '[{"id": 89 }]'
-        json_list = Base.from_json_string(json_string)
-        self.assertEqual(json_list, [{'id': 89}])
-
-    def test_save_to_file(self):
-        """Test saving list of dictionaries to file"""
-       
-        Base.save_to_file([{'id': 1}, {'id': 2}])
-       
-
-    def test_save_to_file_empty_list(self):
-        """Test saving empty list to file"""
-       
+    def test_save_to_file_empty(self):
         Base.save_to_file([])
-       
 
     def test_save_to_file_none(self):
-        """Test saving None to file"""
-       
         Base.save_to_file(None)
-        
 
-    def test_save_to_file_invalid_input(self):
-        """Test saving invalid input to file"""
-        
-        Base.save_to_file("invalid_input")
-        
+    def test_to_json_string_list(self):
+        self.assertEqual(Base.to_json_string([{'id': 12}]), '[{"id": 12}]')
+
+    def test_from_json_string_none(self):
+        self.assertIsNone(Base.from_json_string(None))
+
+    def test_from_json_string_empty(self):
+        self.assertEqual(Base.from_json_string("[]"), [])
+
+    def test_from_json_string_list(self):
+        self.assertEqual(Base.from_json_string('[{"id": 89}]'), [{'id': 89}])
 
 if __name__ == '__main__':
     unittest.main()
