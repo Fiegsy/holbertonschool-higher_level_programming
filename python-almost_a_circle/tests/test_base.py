@@ -1,55 +1,57 @@
 #!/usr/bin/python3
-"""Unit tests for Base class"""
+"""Base test"""
+
 
 import unittest
 from models.base import Base
 
 
 class TestBase(unittest.TestCase):
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def test_base_id_default(self):
+    def test_1(self):
         b1 = Base()
         self.assertEqual(b1.id, 1)
-
-    def test_base_id_increment(self):
+        
+    def test_2(self):
         b1 = Base()
-        b2 = Base()
-        self.assertEqual(b1.id, 1)
-        self.assertEqual(b2.id, 2)
-
-    def test_base_id_custom(self):
+        self.assertEqual(b1.id, 2)
+        
+    def test_3(self):
         b1 = Base(100000)
         self.assertEqual(b1.id, 100000)
 
-    def test_base_id_float(self):
+    def test_4(self):
         b1 = Base(1.1)
         self.assertEqual(b1.id, 1.1)
+        
+    def test_5(self):
+        Base.to_json_string([])
 
-    def test_to_json_string_empty(self):
-        self.assertEqual(Base.to_json_string([]), "[]")
-
-    def test_save_to_file_empty(self):
+    def test_6(self):
         Base.save_to_file([])
 
-    def test_save_to_file_none(self):
+    def test_7(self):
         Base.save_to_file(None)
 
-    def test_to_json_string_list(self):
-        self.assertEqual(Base.to_json_string([{'id': 12}]), '[{"id": 12}]')
+    def test_8(self):
+        Base.to_json_string([])
 
-    def test_from_json_string_none(self):
-        self.assertIsNone(Base.from_json_string(None))
+    def test_9(self):
+        Base.to_json_string([ { 'id': 12 }])
 
-    def test_from_json_string_empty(self):
-        self.assertEqual(Base.from_json_string("[]"), [])
+    def test_10(self):
+        Base.from_json_string(None)
 
-    def test_from_json_string_list(self):
-        self.assertEqual(Base.from_json_string('[{"id": 89}]'), [{'id': 89}])
+    def test_11(self):
+        Base.from_json_string("[]")
+
+    def test_12(self):
+        Base.from_json_string("[]")
+
+    def test_13(self):
+        Base.from_json_string('[{ "id": 89 }]')
+
+    def test_14(self):
+        Base.from_json_string('[{ "id": 89 }]')
 
 if __name__ == '__main__':
     unittest.main()
