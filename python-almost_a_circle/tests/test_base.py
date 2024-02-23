@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""Base class unit tests"""
+"""Base test"""
 
 import unittest
 from models.base import Base
-
 
 class TestBase(unittest.TestCase):
     def test_create_base_instance_with_default_id(self):
@@ -48,7 +47,6 @@ class TestBase(unittest.TestCase):
 
     def test_from_json_string_with_list_containing_dictionary_2(self):
         Base.from_json_string('[{"id": 89}]')
-
 
 if __name__ == '__main__':
     unittest.main()
