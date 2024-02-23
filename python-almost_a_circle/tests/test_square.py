@@ -1,212 +1,147 @@
 #!/usr/bin/python3
-"""Square test"""
-
-import unittest
-from models.square import Square
-
-class TestSquare(unittest.TestCase):
-    def test_create_square_with_side_length(self):
-        Square(1)
-
-    def test_create_square_with_side_length_and_x_coordinate(self):
-        Square(1, 2)
-
-    def test_create_square_with_side_length_x_and_y_coordinates(self):
-        Square(1, 2, 3)
-
-    def test_create_square_with_non_integer_side_length(self):
-        with self.assertRaises(TypeError) as context:
-            Square("1")
-        self.assertTrue('width must be an integer' in str(context.exception))
-
-    def test_create_square_with_non_integer_x_coordinate(self):
-        with self.assertRaises(TypeError) as context:
-            Square(1, "2")
-        self.assertTrue('x must be an integer' in str(context.exception))
-
-    def test_create_square_with_non_integer_y_coordinate(self):
-        with self.assertRaises(TypeError) as context:
-            Square(1, 2, "3")
-        self.assertTrue('y must be an integer' in str(context.exception))
-
-    def test_create_square_with_all_arguments_and_extra_argument(self):
-        dt = Square(1, 2, 3, 4)
-        self.assertTrue('[Square] (4) 2/3 - 1' in str(dt))
-
-    def test_create_square_with_negative_side_length(self):
-        with self.assertRaises(ValueError) as context:
-            Square(-1)
-        self.assertTrue('width must be > 0' in str(context.exception))
-
-    def test_create_square_with_negative_x_coordinate(self):
-        with self.assertRaises(ValueError) as context:
-            Square(1, -2)
-        self.assertTrue('x must be >= 0' in str(context.exception))
-
-    def test_create_square_with_negative_y_coordinate(self):
-        with self.assertRaises(ValueError) as context:
-            Square(1, 2, -3)
-        self.assertTrue('y must be >= 0' in str(context.exception))
-
-    def test_create_square_with_zero_side_length(self):
-        with self.assertRaises(ValueError) as context:
-            Square(0)
-        self.assertTrue('width must be > 0' in str(context.exception))
-
-    def test_create_square_from_dictionary_with_only_size(self):
-        Square.create(**{'size': 1})
-
-    def test_create_square_from_dictionary_with_size_and_x_coordinate(self):
-        Square.create(**{'size': 1, 'x': 2})
-
-    def test_create_square_from_dictionary_with_all_arguments(self):
-        Square.create(**{'size': 1, 'x': 2, 'y': 3, 'id': 89})
-
-    def test_load_square_from_file(self):
-        Square.load_from_file()
-
-    def test_save_to_file_with_None(self):
-        Square.save_to_file(None)
-
-    def test_save_to_file_with_empty_list(self):
-        Square.save_to_file([])
-
-    def test_save_to_file_with_list_of_squares(self):
-        Square.save_to_file([Square(2), Square(4, 1), Square(7, 3, 4)])
-
-    def test_save_to_file_with_None_argument(self):
-        Square.save_to_file(None)
-
-    def test_save_to_file_with_empty_square_list(self):
-        Square.save_to_file([])
-
-    def test_save_to_file_with_None_square(self):
-        Square(1).save_to_file(None)
-
-    def test_to_dictionary_with_invalid_object(self):
-        with self.assertRaises(AttributeError) as context:
-            Square.to_dictionary(self)
-        self.assertTrue("'TestSquare' object has no attribute 'width'" in str(context.exception))
-
-    def test_str_representation_of_square(self):
-        self.assertEqual(str(Square(1, 2, 3, 4)), '[Square] (4) 2/3 - 1')
-
-    def test_display_method_with_square(self):
-        Square(1, 2, 3).display()
-
-if __name__ == '__main__':
-    unittest.main()
-#!/usr/bin/python3
-"""Square test"""
+"""Rectanglecl test"""
 
 
 import unittest
 from models.square import Square
 
 
-class TestSquare(unittest.TestCase):
-    def test_create_square_with_size_only(self):
-        Square(1)
+class TestBase(unittest.TestCase):
+	def test_0(self):
+		Square(1)
 
-    def test_create_square_with_size_and_x(self):
-        Square(1, 2)
+	def test_1(self):
+		Square(1, 2)
 
-    def test_create_square_with_size_x_and_y(self):
-        Square(1, 2, 3)
+	def test_2(self):
+		Square(1, 2, 3)
 
-    def test_create_square_with_non_integer_size(self):
-        with self.assertRaises(TypeError) as context:
-            Square("1")
-        self.assertTrue('width must be an integer' in str(context.exception))
+	def test_3(self):
+		with self.assertRaises(TypeError) as context:
+			Square("1")
+		self.assertTrue('width must be an integer' in str(context.exception))
 
-    def test_create_square_with_non_integer_x(self):
-        with self.assertRaises(TypeError) as context:
-            Square(1, "2")
-        self.assertTrue('x must be an integer' in str(context.exception))
+	def test_4(self):
+		with self.assertRaises(TypeError) as context:
+			Square(1, "2")
+		self.assertTrue('x must be an integer' in str(context.exception))
 
-    def test_create_square_with_non_integer_y(self):
-        with self.assertRaises(TypeError) as context:
-            Square(1, 2, "3")
-        self.assertTrue('y must be an integer' in str(context.exception))
+	def test_5(self):
+		with self.assertRaises(TypeError) as context:
+			Square(1, 2, "3")
+		self.assertTrue('y must be an integer' in str(context.exception))
 
-    def test_create_square_with_all_parameters_and_id(self):
-        dt = Square(1, 2, 3, 4)
-        self.assertTrue('[Square] (4) 2/3 - 1' in str(dt))
+	def test_6(self):
+		dt = Square(1, 2, 3, 4)
+		self.assertTrue('[Square] (4) 2/3 - 1' in str(dt))
 
-    def test_create_square_with_negative_size(self):
-        with self.assertRaises(ValueError) as context:
-            Square(-1)
-        self.assertTrue('width must be > 0' in str(context.exception))
+	def test_7(self):
+		with self.assertRaises(ValueError) as context:
+			Square(-1)
+		self.assertTrue('width must be > 0' in str(context.exception))
 
-    def test_create_square_with_negative_x(self):
-        with self.assertRaises(ValueError) as context:
-            Square(1, -2)
-        self.assertTrue('x must be >= 0' in str(context.exception))
+	def test_8(self):
+		with self.assertRaises(ValueError) as context:
+			Square(1, -2)
+		self.assertTrue('x must be >= 0' in str(context.exception))
 
-    def test_create_square_with_negative_y(self):
-        with self.assertRaises(ValueError) as context:
-            Square(1, 2, -3)
-        self.assertTrue('y must be >= 0' in str(context.exception))
+	def test_9(self):
+		with self.assertRaises(ValueError) as context:
+			Square(1, 2, -3)
+		self.assertTrue('y must be >= 0' in str(context.exception))
 
-    def test_create_square_with_zero_size(self):
-        with self.assertRaises(ValueError) as context:
-            Square(0)
-        self.assertTrue('width must be > 0' in str(context.exception))
+	def test_10(self):
+		with self.assertRaises(ValueError) as context:
+			Square(0)
+		self.assertTrue('width must be > 0' in str(context.exception))
 
-    def test_create_square_from_dictionary_with_id_only(self):
-        Square.create(**{ 'id': 89 })
+	def test_22(self):
+		Square.create(**{ 'id': 89 })
 
-    def test_create_square_from_dictionary_with_id_and_size(self):
-        Square.create(**{ 'id': 89, 'size': 1 })
+	def test_24(self):
+		Square.create(**{ 'id': 89, 'size': 1 })
 
-    def test_create_square_from_dictionary_with_id_size_and_x(self):
-        Square.create(**{ 'id': 89, 'size': 1, 'x': 2 })
+	def test_26(self):
+		Square.create(**{ 'id': 89, 'size': 1, 'x': 2 })
 
-    def test_create_square_from_dictionary_with_id_size_x_and_y(self):
-        Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 })
+	def test_28(self):
+		Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 })
 
-    def test_save_None_to_file(self):
-        Square.save_to_file(None)
+	def test_30(self):
+		Square.save_to_file(None)
 
-    def test_save_empty_list_to_file(self):
-        Square.save_to_file([])
-
-    def test_save_single_square_to_file(self):
-        Square.save_to_file([Square(1)])
-
-    def test_load_squares_from_file(self):
-        Square.load_from_file()
-
-    def test_create_square_from_dictionary_with_size_only(self):
-        Square.create(**{ 'size': 2 })
-
-    def test_create_square_from_dictionary_with_size_and_x(self):
-        Square.create(**{ 'size': 2, 'x': 1 })
-
-    def test_create_square_from_dictionary_with_size_x_and_y(self):
-        Square.create(**{ 'size': 2, 'x': 1, 'y': 3 })
-
-    def test_create_square_from_dictionary_with_all_parameters_and_id(self):
-        Square.create(**{ 'size': 2, 'x': 1, 'y': 3, 'id': 89 })
-
-    def test_load_squares_from_file_again(self):
-        Square.load_from_file()
-
-    def test_save_None_to_file_again(self):
-        Square.save_to_file(None)
+	def test_32(self):
+		Square.save_to_file([])
   
-    def test_save_empty_list_to_file_again(self):
-        Square.save_to_file([])
+	def test_34(self):
+		Square.save_to_file([Square(1)])
 
-    def test_save_single_square_to_file_again(self):
-        Square.save_to_file([Square(1)])
+	def test_36(self):
+		Square.load_from_file()
 
-    def test_string_representation_of_square(self):
-        with self.assertRaises(AttributeError) as context:
-            Square.__str__(self)
-        self.assertTrue("'TestSquare' object has no attribute 'x'" in str(context.exception))
+	def test_37(self):
+		Square.load_from_file()
 
-    def test_to_dictionary_method_with_non_square_instance(self):
-        with self.assertRaises(AttributeError) as context:
-            Square.to_dictionary(self)
-        self.assertTrue("'TestSquare' object has no attribute 'width'" in str(context.exception))
+	def test_40(self):
+		Square(5)
+
+	def test_42(self):
+		Square(5, 7)
+
+	def test_44(self):
+		Square(5, 7, 2)
+  
+	def test_46(self):
+		Square(5, 7, 2, 89)
+
+	def test_54(self):
+		Square.save_to_file(None)
+
+	def test_56(self):
+		Square.save_to_file([])
+
+	def test_58(self):
+		Square.save_to_file([Square(2), Square(4, 1), Square(7, 3, 4)])
+  
+	def test_60(self):
+		Square.save_to_file([Square(2), Square(4, 1), Square(7, 3, 4)])
+
+	def test_61(self):
+		Square.create(**{ 'size': 2 })
+
+	def test_62(self):
+		Square.create(**{ 'size': 2, 'x': 1 })
+
+	def test_63(self):
+		Square.create(**{ 'size': 2, 'x': 1, 'y': 3 })
+
+	def test_64(self):
+		Square.create(**{ 'size': 2, 'x': 1, 'y': 3, 'id': 89 })
+
+	def test_65(self):
+		Square.load_from_file()
+
+	def test_67(self):
+		Square.load_from_file()
+
+	def test_69(self):
+		Square.load_from_file()
+
+	def test_70(self):
+		Square.save_to_file(None)
+  
+	def test_71(self):
+		Square.save_to_file([])
+
+	def test_72(self):
+		Square.save_to_file([Square(1)])
+
+	def test_73(self):
+		with self.assertRaises(AttributeError) as context:
+			Square.__str__(self)
+		self.assertTrue("'TestBase' object has no attribute 'x'" in str(context.exception))
+
+	def test_74(self):
+		with self.assertRaises(AttributeError) as context:
+			Square.to_dictionary(self)
+		self.assertTrue("'TestBase' object has no attribute 'width'" in str(context.exception))
