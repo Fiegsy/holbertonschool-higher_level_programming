@@ -1,11 +1,11 @@
--- Ensure that the database hbtn_0d_usa exists, or create it if it doesn't
-CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
+-- Create the database my_database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS my_database;
 
--- Switch to the hbtn_0d_usa database
-USE hbtn_0d_usa;
+-- Use the my_database database
+USE my_database;
 
--- Create a table named 'states' if it doesn't exist
-CREATE TABLE IF NOT EXISTS states (
-    state_id INT PRIMARY KEY AUTO_INCREMENT,
-    state_name VARCHAR(255) NOT NULL
+-- Create the countries table if it doesn't exist
+CREATE TABLE IF NOT EXISTS countries (
+    country_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    country_name VARCHAR(256) NOT NULL
 );
