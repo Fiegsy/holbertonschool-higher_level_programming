@@ -1,13 +1,8 @@
--- Ensure that the database hbtn_0d_usa exists, or create it if it doesn't
+-- Make cities table into database to mysql server
 CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
 
--- Switch to the hbtn_0d_usa database
-USE hbtn_0d_usa;
-
--- Create the cities table if it doesn't exist
-CREATE TABLE IF NOT EXISTS cities (
-    city_id INT PRIMARY KEY AUTO_INCREMENT,
-    state_id INT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (state_id) REFERENCES states(id)
-);
+CREATE TABLE IF NOT EXISTS hbtn_0d_usa.cities (
+	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	state_id INT NOT NULL, FOREIGN KEY(state_id) REFERENCES hbtn_0d_usa.states(id),
+	name VARCHAR(256) NOT NULL);
+    
